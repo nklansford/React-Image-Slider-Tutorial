@@ -24,6 +24,7 @@ Learn about how I made my React Image Slider. Mini-course below!
 - `cd` into new directory
 
 - enter `npm start` in the terminal
+- you should be seeing 
 
 - ### Delete the following:
   - service worker file and import (and below) in `index.js`
@@ -42,4 +43,4 @@ serviceWorker.unregister();```
 
 
 - ### Create the following:
-  - 
+  - In the `src` folder, add files named `ImageSlider.jsx`, `ImageSliderItem.jsx`, and `data.js`
