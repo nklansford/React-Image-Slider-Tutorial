@@ -25,12 +25,14 @@ Learn about how I made my React Image Slider. Mini-course below!
 
 - enter `npm start` in the terminal
 
-- delete the following:
+- ### Delete the following:
   - service worker file and import (and below) in `index.js`
 
   - `apps-test.js`
   - `serviceWorker.js`
-  - In `index.js` delete the following lines:
+  - `App.test.js`
+  - `public/logo.svg`
+  - In `index.js` delete the following lines of code:
     - `import * as serviceWorker from './serviceWorker';`
     - ```
 // If you want your app to work offline and load faster, you can change
@@ -38,4 +40,6 @@ Learn about how I made my React Image Slider. Mini-course below!
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();```
 
-  - `App.test.js`
+
+- ### Create the following:
+  - 
