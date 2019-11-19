@@ -85,6 +85,8 @@ serviceWorker.unregister();```
 
   - This would be a good time to set up a GitHub repo and make an initial commit on your master branch, create a develop branch, and start working on develop.
 
+  - Go to the `student materials` above and download `images`. In your file tree, find the `public` folder, create an `image` folder, and put both downloaded folders (`icons` and `tiles`) in `images` in your project.
+
 ## Laying the Foundation :boom: :house:
 
 Now we will actually setup the internal parts of the files you just created and think about some concepts of React.
