@@ -93,7 +93,7 @@ Now we will actually setup the internal parts of the files you just created and 
 
 ### What is React :question:
 
-It is a JavaScript library for building user interfaces [(see the React website)](https://reactjs.org/). Unlike other JS libraries that you may have been exposed to in other courses (such as JQuery) this will completely change your entire file tree. Take another look at your project folder. *GASP*! THERE IS NO `index.html`! Wha? But there is an `index.js`.
+It is a JavaScript library for building user interfaces [(see the React website)](https://reactjs.org/). Unlike other JS libraries that you may have been exposed to in other courses (such as JQuery) this will completely change your entire file tree. Take another look at your project folder `src`. *GASP*! THERE IS NO `index.html`! Wha? But there is an `index.js`.
 
 The 1000 foot view is that all of your "html" and markup will be in various JavaScript (and JavaScript XML) files. But it will be rendered as if it were just normal html in the DOM.
 
@@ -115,6 +115,30 @@ So here are some reasons why you may find this actually pretty amazing tool usef
 In other words,
 <img src="images/tutorial-images/jontron-2.jpg" />
 
+
+
+  - Another important aspect is that React uses JS and also JSX (as seen by the file endings in your file tree). JSX is a language that allows you to write html in javascript statements and javascript in html tags by utilizing a specific syntax. Browsers do not understand it, so it will be compiled into regular JS in a "React DOM" and then to the browser's DOM.
+
+  As we build this image slider component I think you will see why React becomes really useful and cleaner than you expect.
+
 ## Set up your files :construction:
 
-Okay, so when react set up your project, it did some of the dirty work for you. Here is what you will need to do next:
+Okay, so when react set up your project, it did some of the dirty work (file setup) for you. Here is what you will need to do next in your actual files.
+
+- In `index.js` modify your code to match:
+```
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './components/App';
+ReactDOM.render(<App />, document.getElementById('root'));
+```
+Think about this being comparable to how SASS organizes your stylesheets so that you have one big import location and then other subfiles that have the actual information and structure. This file's job is going to be to import the React library, tell it to compile, and pay attention to your other files.
+
+  - The line `ReactDOM.render(<App />, document.getElementById('root'));` is a good way to introduce jsx. It stands for Javascript XML. If you remember from Scripting for Interactivity, XML could be described as a less-specific HTML. In other words, HTML is a type of XML. In XML you can create your own tags and assign them a purpose or rule. (Perhaps a helpful analogy is how you can create classes in CSS and assign them meaning.) JSX utilizes that idea and mixes in the functionality of Javascript. So this line of code might read in english, "Hey React! I want you to tell the browser to show the contents of `App.jsx` as if it were placed where `id="root"` occurs."
+
+  - Your next question should be how does it know `app` is a thing and where is `id="root"`?
+
+    - Let's talk about `root` first since it is easier to explain. REACT MADE ROOT FOR YOU! Wasn't that nice of it? You may have noticed that in the `public` folder there is an actual `index.html` file. This is where a lot of the React defaults and compiling setup happens. Again, it's *not* for your main content.
+      - (Maybe a helpful Comparison: You don't put your styles into `styles.css` when using SASS. Instead, you have `styles.scss` which imports all of the rules in your subfiles. In React, it gets ready to compile in `index.html`, pulls from `index.js`, which pulls from your other files. A key difference is that you will not be able to see the full compiled version in `index.html` like you can in SASS. Remember, this tells the React DOM to communicate with the browser DOM. So, your best bet in figuring out errors are your terminal and browser console. (NOTE: you don't have to use this built in feature of pointing to `root` in the html template. However, for one page that has one component it keeps things simpler.)
+      - For our purposes, just know that `root` is a container on a plain webpage.
