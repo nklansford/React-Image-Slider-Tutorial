@@ -166,7 +166,7 @@ Let's take a closer look at `index.js`. This is where all of the imports from th
       - For our purposes, just know that `root` is a container on a plain webpage.
 
     - `App` is the element that is to be rendered in `root`. See  `import App from './components/App';` on the 4th line of your code in `index.js`. This is a function that becomes an element to be the default export in `App.jsx`. Open `App.jsx` and see what I mean. See how it is a function: `function App()` and also the default export: `export default App;`. Because it is a named function, it can be treated as a callable element in React.
-  - Now let's take a look at the part that has all of the content!
+  - Now let's take a look at the part that has all of the content! (Also, don't forget to commit your code to `develop`!)
 
 ## Let's Code! 👩‍💻👨‍💻
 
@@ -175,4 +175,21 @@ Something to note about this project is that we are working from a finished prod
 ### Image Setup 	🖼
 Let's start with `src/data/images.js`! We'll set it up and look at how we connect it back to `App.jsx`.
 
-- Open the file.
+- Open the file. Ahh, a completely blank file. How terrifying. Okay, for real, TAKE A DEEP BREATH DESIGNER, you can do it.
+
+- So, this is what we want out of the image slider: we want one image to be seen at a time with a forward and back arrow that shows a new picture depending on the arrow you click. Essentially it is a list of images being shown one at a time by using arrows.
+
+- So, we need a list of images. You could make an html list, which would be perfectly acceptable, but in this case I used an array of images. We'll make a json list in our `.js` file. So, we could make a list called `data` that lists the images and then do an `export default data;` at the bottom of the file similar to the setup in `App.js`. However, a shorthand is to create it this way:
+  - ```
+  export default [
+      "./images/tiles/bork.png",
+      //enter the rest of the images here!
+  ];
+    ```
+  - Once you enter in the rest of the image files, this file is set!
+
+- It connects to `App.jsx` through the line that is seen in `App.jsx`:  `import data from '../data/images';`. Since the image list is the only thing in the file and we set it to the default export, you are able to name the import in `App.jsx` something meaningful and it will import the default from `images.js`.
+
+- Notice the line in `App.jsx`: `<ImageSlider images={data}/>` It calls the information from data. We will come back to that line and what it means in the next section, but it is good to notice that our images are being called here.
+
+### Image Slider :dizzy:
