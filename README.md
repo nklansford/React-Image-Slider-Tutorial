@@ -1,5 +1,5 @@
 # React-Image-Slider-Tutorial
-Learn about how I made my React Image Slider. Mini-course below!
+Learn about how I made my [React Image Slider](https://github.com/nklansford/react-image-slider). Mini-course below!
 
 ## Tools Used :wrench: :nut_and_bolt:
 - [Atom](https://atom.io/)
@@ -13,6 +13,8 @@ Learn about how I made my React Image Slider. Mini-course below!
 ## Setting Up Your Project :octocat: :wrench:
 
 <!-- - [Clone this project](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) onto your own machine. -->
+
+- If at any time you get lost or are confused about how a file should look, feel free to view my [finished project](https://github.com/nklansford/react-image-slider).
 
 - Locate the folder where you want the project to live on your machine in the terminal.
   - If you have [platformio-ide-terminal](https://atom.io/packages/platformio-ide-terminal) installed in [Atom](https://atom.io/): open a project folder in an Atom window and open your terminal in the editor. You should see your name and project name on the line you are typing on.
@@ -85,7 +87,7 @@ serviceWorker.unregister();```
 
   - This would be a good time to set up a GitHub repo and make an initial commit on your master branch, create a develop branch, and start working on develop.
 
-  - Go to the `student materials` above and download `images`. In your file tree, find the `public` folder, create an `image` folder, and put both downloaded folders (`icons` and `tiles`) in `images` in your project.
+  - DOWNLOAD: Go to the `student materials` above in this repo and download `images`. In your file tree, find the `public` folder, create an `image` folder, and put both downloaded folders (`icons` and `tiles`) in `images` in your project.
 
 ## Laying the Foundation :boom: :house:
 
@@ -125,6 +127,22 @@ In other words,
 
 Okay, so when react set up your project, it did some of the dirty work (file setup) for you. Here is what you will need to do next in your actual files.
 
+- In `App.jsx` modify your code to match:
+```
+import React from 'react';
+import ImageSlider from './ImageSlider';
+import './App.css';
+import data from '../data/images';
+function App() {
+  return (
+    <>
+      <h1 className="image-slider-title">Let it snow, let it snow</h1>
+      <ImageSlider images={data}/>
+    </>
+  );
+}
+export default App;
+```
 - In `index.js` modify your code to match:
 ```
 import React from 'react';
@@ -133,12 +151,28 @@ import './index.css';
 import App from './components/App';
 ReactDOM.render(<App />, document.getElementById('root'));
 ```
-Think about this being comparable to how SASS organizes your stylesheets so that you have one big import location and then other subfiles that have the actual information and structure. This file's job is going to be to import the React library, tell it to compile, and pay attention to your other files.
+- Save and make sure that you don't have any errors in your terminal. I would recommend keeping your Atom terminal open so that you can see if it is refreshing the page or throwing errors. If it throws an error make sure you look at the terminal, it has pretty smart suggestions.
+
+Let's take a closer look at `index.js`. This is where all of the imports from the other files come together. Think about this being comparable to how SASS organizes your stylesheets so that you have one big import location and then other subfiles that have the actual information and structure. This file's job is going to be to import the React library, tell it to compile, and pay attention to your other files, as well as another very imporant element that we will discuss below:
 
   - The line `ReactDOM.render(<App />, document.getElementById('root'));` is a good way to introduce jsx. It stands for Javascript XML. If you remember from Scripting for Interactivity, XML could be described as a less-specific HTML. In other words, HTML is a type of XML. In XML you can create your own tags and assign them a purpose or rule. (Perhaps a helpful analogy is how you can create classes in CSS and assign them meaning.) JSX utilizes that idea and mixes in the functionality of Javascript. So this line of code might read in english, "Hey React! I want you to tell the browser to show the contents of `App.jsx` as if it were placed where `id="root"` occurs."
 
   - Your next question should be how does it know `app` is a thing and where is `id="root"`?
 
     - Let's talk about `root` first since it is easier to explain. REACT MADE ROOT FOR YOU! Wasn't that nice of it? You may have noticed that in the `public` folder there is an actual `index.html` file. This is where a lot of the React defaults and compiling setup happens. Again, it's *not* for your main content.
-      - (Maybe a helpful Comparison: You don't put your styles into `styles.css` when using SASS. Instead, you have `styles.scss` which imports all of the rules in your subfiles. In React, it gets ready to compile in `index.html`, pulls from `index.js`, which pulls from your other files. A key difference is that you will not be able to see the full compiled version in `index.html` like you can in SASS. Remember, this tells the React DOM to communicate with the browser DOM. So, your best bet in figuring out errors are your terminal and browser console. (NOTE: you don't have to use this built in feature of pointing to `root` in the html template. However, for one page that has one component it keeps things simpler.)
+
+      - In React, your project gets ready to compile in `index.html`, which gets infomation from `index.js`, which pulls from your other files. (Maybe a helpful Comparison: You don't put your styles into `styles.css` when using SASS. Instead, you have `styles.scss` which imports all of the rules in your subfiles.) A key difference is that you will not be able to see the fully compiled version in `index.html` like you can in SASS. Remember, this tells the React DOM to communicate with the browser DOM. So, your best bet in figuring out errors are your terminal and browser console. (NOTE: you don't have to use this built in feature of pointing to `root` in the html template. However, for one page that has one component it keeps things simpler.)
+
       - For our purposes, just know that `root` is a container on a plain webpage.
+
+    - `App` is the element that is to be rendered in `root`. See  `import App from './components/App';` on the 4th line of your code in `index.js`. This is a function that becomes an element to be the default export in `App.jsx`. Open `App.jsx` and see what I mean. See how it is a function: `function App()` and also the default export: `export default App;`. Because it is a named function, it can be treated as a callable element in React.
+  - Now let's take a look at the part that has all of the content!
+
+## Let's Code! 👩‍💻👨‍💻
+
+Something to note about this project is that we are working from a finished product, backwards and then forward again. This means that I am looking at things that I built and then rebuilding them. So, some things are already setup that are not necessarily a rule of React or something that you should *just know* or *always do*. With that in mind, let's look at our good ol' `App.jsx` file. See the line `<ImageSlider images={data}/>`. This is one of those instances! This is just how I set up this project and is by no means the only way of building this component. I will walk you through building the other files the way that I chose to set it up based on what I learned about React. Just keep in mind the principles you learn here and know that the setup and possibilities can be endless!
+
+### Image Setup 	🖼
+Let's start with `src/data/images.js`! We'll set it up and look at how we connect it back to `App.jsx`.
+
+- Open the file.
