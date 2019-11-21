@@ -40,12 +40,12 @@ Learn about how I made my [React Image Slider](https://github.com/nklansford/rea
 
   - In `index.js` delete the following lines of code:
     - `import * as serviceWorker from './serviceWorker';`
-    - ```JSX
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
-```
+    ```JSX
+      // If you want your app to work offline and load faster, you can change
+      // unregister() to register() below. Note this comes with some pitfalls.
+      // Learn more about service workers: https://bit.ly/CRA-PWA
+      serviceWorker.unregister();
+      ```
 
 - ### Create the following :nut_and_bolt:
   - In the `src` folder, add two folders:
