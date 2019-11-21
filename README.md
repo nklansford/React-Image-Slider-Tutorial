@@ -44,8 +44,8 @@ Learn about how I made my [React Image Slider](https://github.com/nklansford/rea
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();```
-
+serviceWorker.unregister();
+```
 
 - ### Create the following :nut_and_bolt:
   - In the `src` folder, add two folders:
@@ -85,7 +85,7 @@ serviceWorker.unregister();```
     ```
     The rest of the files should remain in the same location/naming.
 
-  - This would be a good time to set up a GitHub repo and make an initial commit on your master branch, create a develop branch, and start working on develop.
+  - This would be a good time to set up a GitHub repo and make an initial commit on your master branch, create a develop branch, and start working on develop. (note that you will need to change the `name` field in `package.json` to your project name. Make sure that it is a web-safe name).
 
   - DOWNLOAD: Go to the `student materials` above in this repo and download `images`. In your file tree, find the `public` folder, create an `image` folder, and put both downloaded folders (`icons` and `tiles`) in `images` in your project.
 
