@@ -190,6 +190,12 @@ Let's start with `src/data/images.js`! We'll set it up and look at how we connec
 
 - It connects to `App.jsx` through the line that is seen in `App.jsx`:  `import data from '../data/images';`. Since the image list is the only thing in the file and we set it to the default export, you are able to name the import in `App.jsx` something meaningful and it will import the default from `images.js`.
 
-- Notice the line in `App.jsx`: `<ImageSlider images={data}/>` It calls the information from data. We will come back to that line and what it means in the next section, but it is good to notice that our images are being called here.
+- Notice the line in `App.jsx`: `<ImageSlider images={data}/>` calls the information from data. We will come back to that line and what it means in the next section, but it is good to notice that our images are being called here.
 
 ### Image Slider :dizzy:
+
+- The first thing we will want to do is import our necessary files for this part. We know that we will eventually want to style it so add these two lines at the top of your file:
+```
+import React from 'react';
+import './ImageSlider.css';
+```
