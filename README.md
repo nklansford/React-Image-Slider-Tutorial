@@ -286,7 +286,7 @@ indexForward = () => {
   ```
   - Change the `else` statement to:
   ```
-  } else {
+} else {
     this.setState({
       currentIndex: length - 1
     });
@@ -301,9 +301,19 @@ indexForward = () => {
 
 - At the very bottom of your `ImageSlider.jsx` remember to export it by entering `export default ImageSlider;`
 
+- In `index.css` add the following styles:
+```
+@import url('https://fonts.googleapis.com/css?family=Megrim&display=swap');
+body {
+  width: 380px;
+  margin: 80px auto;
+}
+```
+This will get the google font in the styles and center your element.
+
 - In `ImageSlider.css` add the following styles:
 ```
-.image-slider {
+  .image-slider {
   display: flex;
   flex-flow: row wrap;
   width: 380px;
@@ -317,3 +327,15 @@ indexForward = () => {
   padding: 0px;
 }
 ```
+This establishes the layout.
+
+- In `App.css` add the following styles:
+```
+.image-slider-title {
+  font-family: 'Megrim', cursive;
+  text-align: center;
+}
+```
+This styles the header.
+
+- Note: single broken up stylesheets are considered best web practice now rather than one alphabetized stylesheet. It is easier to come back to later and can make it easier to repeat elements. (Similar idea to SASS)
