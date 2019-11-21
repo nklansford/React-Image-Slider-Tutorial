@@ -1,4 +1,4 @@
-# React-Image-Slider-Tutorial
+# React Image Slider Tutorial
 Learn about how I made my [React Image Slider](https://github.com/nklansford/react-image-slider). Mini-course below!
 
 ## Tools Used :wrench: :nut_and_bolt:
@@ -106,6 +106,8 @@ So if you are like me, you may be thinking along the lines of JonTron in his Fle
 Also, this oddly hilariously ABSOLUTELY NEVER relevant reaction:
 
 <img src="images/tutorial-images/jontron-3.gif" />
+
+(but actually though... I don't think I have ever been mad at anyone named Phil :thinking: )
 
 Why would I make my life harder like this when I could just you know... PUT IT IN AN HTML FILE AND IT ALREADY RENDERS LIKE HOW IT LOOKS IN THE FILE? What are you tryna pull React?
 
@@ -215,7 +217,7 @@ render() {
 ```
 Yay! Looks like html wrapped inside javascript! Notice that one difference is that classes in jsx have to be `className` since `class` is something different in this language.
 
-- Notice on the line `<img className="image-slider__image" alt="" src="#" />` that `src` has a placeholder. We want this to be our list of images from `images.js`. We will make something called a constructor so that we can organize what we see from the list. Enter this block of code above the previous block of code, but still under the imports:
+- Notice on the line `<img className="image-slider__image" alt="" src="#" />` that `src` has a placeholder. Go ahead and replace the placeholder with `{currentImage}`. I wanted you to put that in yourself to bring special attention to it. Right now, that doesn't do anything; it is what we are building next. We want this to be our list of images from `images.js`. We will make something called a constructor so that we can organize what we see from the list. Enter this block of code above the previous block of code, but still under the imports:
 ```
 class ImageSlider extends React.Component {
   constructor() {
@@ -233,13 +235,13 @@ const { images } = this.props;
 const { currentIndex } = this.state;
 const currentImage = images[currentIndex];
 ```
-This is where I will bring up props. Props are a key element in React. Take a look at `App.jsx` again. See the line `<ImageSlider images={data}/>`. `images` is called a prop, short for property. You can name this whatever you want. Much like a class in css, you can call it whatever and specify it's meaning later either in the same file or in a sepearte one. We named this prop `images` and will treat it much like a regular html `src`. We are already passing in the images from data to this. But now, with the added lines in `ImageSlider.jsx` (Go ahead and look at that file again) that you just entered the `image` prop is being told to only show the `currentIndex` which is `0` as specified further up the file!
+This is where I will bring up props. Props are a key element in React. Take a look at `App.jsx` again. See the line `<ImageSlider images={data}/>`. `images` is called a prop, short for property. You can name this whatever you want. Much like a class in css, you can call it whatever and specify it's meaning later either in the same file or in a sepearte one. We named this prop `images` and will treat it much like a regular html `src`. We are already passing in the images from `data` to the prop. But now, with the added lines in `ImageSlider.jsx` (Go ahead and look at that file again) that you just entered, the `image` prop is being told to only show the `currentIndex`. Note that the `currentIndex` is `0` as specified further up the file. In short, you are passing in the list of images, starting at the top of your list!
 
 #### Getting in the Arrows
 
-- Now, we will want the ability to use the arrows to get to the other images. We already have the arrow images in our `ImageSlider.jsx` file, so they are technically there, but we need them to be functional. We will start with the forward arrow. Let's make a function that tells an object to move the `currentIndex` forward by `1` when it is clicked and also loop back to the first image if we reach the end of the list. We will worry about creating the logic first and then "link" it to the element once we are done.
+- Now, we will want the ability to use the arrows to get to the other images. We already have the arrow images in our `ImageSlider.jsx` file, so they are technically there. However, we need them to be functional. We will start with the forward arrow. Let's make a function that tells an object to move the `currentIndex` forward by `1` when it is clicked and also loop back to the first image if we reach the end of the list. We will worry about creating the logic first and then "link" it to the element once we are done.
 
-- We are dealing with our image prop again so we will tell the function that we are talking about it and specifically, the `length` of our array. In `ImageSlider.jsx`, enter this code right above `render () {`:
+- We are dealing with our image prop again so we will tell the function that we are talking about it and specifically, the `length` of it (Helpful note: `length` refers to the the numbers that are inherently assigned to each object in an array. EX: `0`,`1`,`2`....). In `ImageSlider.jsx`, enter this code right above `render () {`:
 ```
 indexForward = () => {
   const length = this.props.images.length;
@@ -247,7 +249,7 @@ indexForward = () => {
 ```
 Enter into a new line right beneath `const length = this.props.images.length;`.
 
-- We will want an if-else statement that says "If the index is 0 through the last image, go forward one. Otherwise go back to the first image in the list." Enter this code on your new line beneath `const length = this.props.images.length;`:
+- We will want an if-else statement that says "If the index is `0` through the last image, go forward one. Otherwise go back to the first image in the list." Enter this code on your new line beneath `const length = this.props.images.length;`:
 ```
 if(this.state.currentIndex < length - 1){
   this.setState({
