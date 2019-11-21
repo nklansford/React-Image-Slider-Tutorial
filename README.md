@@ -194,8 +194,126 @@ Let's start with `src/data/images.js`! We'll set it up and look at how we connec
 
 ### Image Slider :dizzy:
 
-- The first thing we will want to do is import our necessary files for this part. We know that we will eventually want to style it so add these two lines at the top of your file:
+- The first thing we will want to do is import our necessary content from the other files. We know that we will eventually want to style it so add these two lines at the top of your file:
 ```
 import React from 'react';
 import './ImageSlider.css';
+```
+
+#### Getting in the Images
+- We know that we want to see our images. We also know that we want to see the forward and backward arrows on each side of the image. So, we can enter We see things by using `render()`. Enter this code in `ImageSlider.jsx` below your imports.
+```
+render() {
+  return (
+    <div className="image-slider">
+      <img className="image-slider__arrow slider__arrow--previous" alt="show previous" src="./images/icons/previous-arrow.png" />
+      <img className="image-slider__image" alt="" src="#" />
+      <img className="image-slider__arrow slider__arrow--next" alt="show next" src="./images/icons/next-arrow.png" />
+    </div>
+  );
+}
+```
+Yay! Looks like html wrapped inside javascript! Notice that one difference is that classes in jsx have to be `className` since `class` is something different in this language.
+
+- Notice on the line `<img className="image-slider__image" alt="" src="#" />` that `src` has a placeholder. We want this to be our list of images from `images.js`. We will make something called a constructor so that we can organize what we see from the list. Enter this block of code above the previous block of code, but still under the imports:
+```
+class ImageSlider extends React.Component {
+  constructor() {
+    super();
+      this.state = {
+        currentIndex: 0
+      }
+  }
+```
+The constructor says that we only want to see the first image in the list from images. Remember that `images.js` is an array. This means that each item has an inherent index starting with `0`. So, we are simply saying to select the first one. Notice that it is not connected to our other block of code yet.
+
+- To connect the two, we will need to specify `images` and the `currentIndex`. Inside `render(){}` right above `return (` enter this code:
+```
+const { images } = this.props;
+const { currentIndex } = this.state;
+const currentImage = images[currentIndex];
+```
+This is where I will bring up props. Props are a key element in React. Take a look at `App.jsx` again. See the line `<ImageSlider images={data}/>`. `images` is called a prop, short for property. You can name this whatever you want. Much like a class in css, you can call it whatever and specify it's meaning later either in the same file or in a sepearte one. We named this prop `images` and will treat it much like a regular html `src`. We are already passing in the images from data to this. But now, with the added lines in `ImageSlider.jsx` (Go ahead and look at that file again) that you just entered the `image` prop is being told to only show the `currentIndex` which is `0` as specified further up the file!
+
+#### Getting in the Arrows
+
+- Now, we will want the ability to use the arrows to get to the other images. We already have the arrow images in our `ImageSlider.jsx` file, so they are technically there, but we need them to be functional. We will start with the forward arrow. Let's make a function that tells an object to move the `currentIndex` forward by `1` when it is clicked and also loop back to the first image if we reach the end of the list. We will worry about creating the logic first and then "link" it to the element once we are done.
+
+- We are dealing with our image prop again so we will tell the function that we are talking about it and specifically, the `length` of our array. In `ImageSlider.jsx`, enter this code right above `render () {`:
+```
+indexForward = () => {
+  const length = this.props.images.length;
+}
+```
+Enter into a new line right beneath `const length = this.props.images.length;`.
+
+- We will want an if-else statement that says "If the index is 0 through the last image, go forward one. Otherwise go back to the first image in the list." Enter this code on your new line beneath `const length = this.props.images.length;`:
+```
+if(this.state.currentIndex < length - 1){
+  this.setState({
+    currentIndex: this.state.currentIndex + 1
+  });
+} else {
+  this.setState({
+    currentIndex: 0
+  });
+}
+```
+All together your function should look like:
+```
+indexForward = () => {
+  const length = this.props.images.length;
+  if(this.state.currentIndex < length - 1){
+    this.setState({
+      currentIndex: this.state.currentIndex + 1
+    });
+  } else {
+    this.setState({
+      currentIndex: 0
+    });
+  }
+}
+```
+
+- Now, copy and paste that whole function right underneath itself. Change `indexForward` to `indexBackward`.
+- We want the reverse functionality of the first function so we will some lines in the `if else` statement. We now want our function to say, "If the index is more than the first one, go back one image. Otherwise go back to the last image."
+  - Change the `if` statement to:
+  ```
+  if(this.state.currentIndex > 0){
+    this.setState({
+      currentIndex: this.state.currentIndex - 1
+    });
+  ```
+  - Change the `else` statement to:
+  ```
+  } else {
+    this.setState({
+      currentIndex: length - 1
+    });
+  ```
+- Now we need to connect our logic to the actual arrow elements. The beauty of React is that we can add the `onClick` event listener right into the "html" element.
+  - In `<div className="image-slider">` Find the backward arrow image. Right in between `<img` and `className` enter the code `onClick={this.indexBackward}`.
+  - Find the forward arrow image and in the same spot enter `onClick={this.indexForward}`.
+
+  - Wasn't that super satisfying? NO TRAVERSAL. No more `child.next.previous.help.idk.where.i.am.anymore();`
+
+#### Final Touches
+
+- At the very bottom of your `ImageSlider.jsx` remember to export it by entering `export default ImageSlider;`
+
+- In `ImageSlider.css` add the following styles:
+```
+.image-slider {
+  display: flex;
+  flex-flow: row wrap;
+  width: 380px;
+  justify-content: space-between;
+}
+.image-slider__arrow{
+  display: block;
+  align-self: center;
+}
+.image-slider__image {
+  padding: 0px;
+}
 ```
