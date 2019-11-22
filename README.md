@@ -340,4 +340,4 @@ This styles the header.
 
 - Note: single broken up stylesheets are considered best web practice now rather than one alphabetized stylesheet. It is easier to come back to later and can make it easier to repeat elements. (Similar idea to SASS)
 
-# CONGRATUALTIONS ON CREATING YOUR OWN REACT COMPONENT!!!!
+# CONGRATUALTIONS ON CREATING YOUR OWN REACT COMPONENT!!!! :fireworks: :tada: :confetti_ball:
