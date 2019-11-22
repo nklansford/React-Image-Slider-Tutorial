@@ -12,8 +12,6 @@ Learn about how I made my [React Image Slider](https://github.com/nklansford/rea
 
 ## Setting Up Your Project :octocat: :wrench:
 
-<!-- - [Clone this project](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) onto your own machine. -->
-
 - If at any time you get lost or are confused about how a file should look, feel free to view my [finished project](https://github.com/nklansford/react-image-slider).
 
 - Locate the folder where you want the project to live on your machine in the terminal.
@@ -40,12 +38,12 @@ Learn about how I made my [React Image Slider](https://github.com/nklansford/rea
 
   - In `index.js` delete the following lines of code:
     - `import * as serviceWorker from './serviceWorker';`
-    - ```JavaScript
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
-```
+    ```
+    // If you want your app to work offline and load faster, you can change
+    // unregister() to register() below. Note this comes with some pitfalls.
+    // Learn more about service workers: https://bit.ly/CRA-PWA
+    serviceWorker.unregister();
+    ```
 
 - ### Create the following :nut_and_bolt:
   - In the `src` folder, add two folders:
@@ -163,9 +161,9 @@ Let's take a closer look at `index.js`. This is where all of the imports from th
 
     - Let's talk about `root` first since it is easier to explain. REACT MADE ROOT FOR YOU! Wasn't that nice of it? You may have noticed that in the `public` folder there is an actual `index.html` file. This is where a lot of the React defaults and compiling setup happens. Again, it's *not* for your main content.
 
-      - In React, your project gets ready to compile in `index.html`, which gets infomation from `index.js`, which pulls from your other files. (Maybe a helpful Comparison: You don't put your styles into `styles.css` when using SASS. Instead, you have `styles.scss` which imports all of the rules in your subfiles.) A key difference is that you will not be able to see the fully compiled version in `index.html` like you can in SASS. Remember, this tells the React DOM to communicate with the browser DOM. So, your best bet in figuring out errors are your terminal and browser console. (NOTE: you don't have to use this built in feature of pointing to `root` in the html template. However, for one page that has one component it keeps things simpler.)
+    - In React, your project gets ready to compile in `index.html`, which gets infomation from `index.js`, which pulls from your other files. (Maybe a helpful Comparison: You don't put your styles into `styles.css` when using SASS. Instead, you have `styles.scss` which imports all of the rules in your subfiles.) A key difference is that you will not be able to see the fully compiled version in `index.html` like you can in SASS. Remember, this tells the React DOM to communicate with the browser DOM. So, your best bet in figuring out errors are your terminal and browser console. (NOTE: you don't have to use this built in feature of pointing to `root` in the html template. However, for one page that has one component it keeps things simpler.)
 
-      - For our purposes, just know that `root` is a container on a plain webpage.
+    - For our purposes, just know that `root` is a container on a plain webpage.
 
     - `App` is the element that is to be rendered in `root`. See  `import App from './components/App';` on the 4th line of your code in `index.js`. This is a function that becomes an element to be the default export in `App.jsx`. Open `App.jsx` and see what I mean. See how it is a function: `function App()` and also the default export: `export default App;`. Because it is a named function, it can be treated as a callable element in React.
   - Now let's take a look at the part that has all of the content! (Also, don't forget to commit your code to `develop`!)
@@ -182,12 +180,12 @@ Let's start with `src/data/images.js`! We'll set it up and look at how we connec
 - So, this is what we want out of the image slider: we want one image to be seen at a time with a forward and back arrow that shows a new picture depending on the arrow you click. Essentially it is a list of images being shown one at a time by using arrows.
 
 - So, we need a list of images. You could make an html list, which would be perfectly acceptable, but in this case I used an array of images. We'll make a json list in our `.js` file. So, we could make a list called `data` that lists the images and then do an `export default data;` at the bottom of the file similar to the setup in `App.js`. However, a shorthand is to create it this way:
-  - ```
+  ```
   export default [
       "./images/tiles/bork.png",
       //enter the rest of the images here!
   ];
-    ```
+  ```
   - Once you enter in the rest of the image files, this file is set!
 
 - It connects to `App.jsx` through the line that is seen in `App.jsx`:  `import data from '../data/images';`. Since the image list is the only thing in the file and we set it to the default export, you are able to name the import in `App.jsx` something meaningful and it will import the default from `images.js`.
@@ -208,7 +206,7 @@ import './ImageSlider.css';
 render() {
   return (
     <div className="image-slider">
-      <img className="image-slider__arrow slider__arrow--previous" alt="show previous" src="./images/icons/previous-arrow.png" />
+      <img className="image-slider__arrow slider__arrow--previous" alt="show previous" src="./images/icons/previous- arrow.png" />
       <img className="image-slider__image" alt="" src="#" />
       <img className="image-slider__arrow slider__arrow--next" alt="show next" src="./images/icons/next-arrow.png" />
     </div>
@@ -288,7 +286,7 @@ indexForward = () => {
   ```
   - Change the `else` statement to:
   ```
-} else {
+  } else {
     this.setState({
       currentIndex: length - 1
     });
@@ -341,3 +339,5 @@ This establishes the layout.
 This styles the header.
 
 - Note: single broken up stylesheets are considered best web practice now rather than one alphabetized stylesheet. It is easier to come back to later and can make it easier to repeat elements. (Similar idea to SASS)
+
+# CONGRATUALTIONS ON CREATING YOUR OWN REACT COMPONENT!!!!
